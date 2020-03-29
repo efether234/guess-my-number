@@ -10,6 +10,7 @@ class Game:
 
     def __init__(self):
         self.game_over = True
+        self.guesses = 0
         self.upper_bound = None
         self.secret_number = None
 
