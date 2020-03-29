@@ -6,6 +6,18 @@ the user."""
 
 from game import Game
 
+def setup(game):
+    while game.game_over:
+        print("Please choose a difficulty level: Easy, Medium, Hard, or Insane")
+        try:
+            difficulty = input('Difficulty: ').lower()
+            game.set_upper_bound(difficulty)
+        except ValueError:
+            print("Oops, that wasn't a valid response.\n")
+            continue
+        game.generate_secret_number()
+        game.game_over = False
+
 def main():
     """Run the guess-my-number game."""
 
@@ -13,16 +25,7 @@ def main():
     guesses = 0
 
     while True:
-        while game.game_over:
-            print("Please choose a difficulty level: Easy, Medium, Hard, or Insane")
-            try:
-                difficulty = input('Difficulty: ').lower()
-                game.set_upper_bound(difficulty)
-            except ValueError:
-                print("Oops, that wasn't a valid response.\n")
-                continue
-            game.generate_secret_number()
-            game.game_over = False
+        setup(game)
 
         # Ask the user for a guess. If they enter something other than an int,
         # tell them and ask again.
