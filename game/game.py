@@ -1,7 +1,3 @@
-"""The game module.
-
-Contains all the logic for the game object."""
-
 from random import random
 from math import ceil
 
@@ -11,9 +7,9 @@ class Game:
     Has attributes of upper bound and secret number. __generate_number()
     generates a random number between 1 and the upper_bound inclusive.
     User tries to guess the secret number."""
+
     def __init__(self):
         self.game_over = True
-        self.guesses = 0
         self.upper_bound = None
         self.secret_number = None
 
@@ -26,6 +22,7 @@ class Game:
 
         Takes difficulty specified by the user, then sets self.upper_bound
         to 10, 20, 100, or 1000 depending on the dificulty input."""
+
         # Check that user entered valid request.
         if difficulty not in ('easy', 'medium', 'hard', 'insane'):
             raise ValueError("Choice must be either 'easy', 'medium', 'hard', or 'insane'")
@@ -43,6 +40,7 @@ class Game:
 
     def generate_secret_number(self):
         """Sets self.secret_number to a random inter between 1 and self.upper_bound inclusive."""
+
         self.secret_number = ceil(random() * self.upper_bound)
 
     def check(self, guess):
@@ -51,6 +49,7 @@ class Game:
         Accepts user's guess, then compares it to secret_number.
         If guess is correct, return zero. Otherwise, export 1 of -1
         if guess is too big or too small, respectively."""
+
         assert isinstance(guess, int), "Input should be of type Int"
 
         if guess > self.secret_number:
