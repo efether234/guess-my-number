@@ -43,7 +43,6 @@ def play_again(game):
 
 def main():
     """Run the guess-my-number game."""
-
     game = Game()
 
     while True:
@@ -74,7 +73,18 @@ def main():
             print('Correct! It took you ' + str(game.guesses) + ' guesses! \n')
 
             # Ask the user if they would like to play again
+<<<<<<< HEAD
             if not play_again(game):
+=======
+            play_again = None
+            while play_again not in ('y', 'n'):
+                play_again = input('Would you like to play again? (y/n) ')
+                print("Sorry, didn't catch that.\n")
+            if play_again == 'y':
+                game.game_over = True
+                guesses = 0 
+            else:
+>>>>>>> parent of e5108ba... Fix bug in 'would you like to play again' section.
                 break
 
 if __name__ == '__main__':
