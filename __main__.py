@@ -7,6 +7,11 @@ the user."""
 from game import Game
 
 def setup(game):
+    """Sets up the current game.
+
+    Asks the user for a difficulty level, then sets the upper bound
+    and generates the secret number."""
+
     while game.game_over:
         print("Please choose a difficulty level: Easy, Medium, Hard, or Insane")
         try:
@@ -19,6 +24,11 @@ def setup(game):
         game.game_over = False
 
 def play_again(game):
+    """Asks the user if they want to play again.
+
+    Takes input of either 'y' or 'n', then either resets the game
+    or returns False to exit the program."""
+
     again = None
     while not again:
         again = input('Would you like to play again? (y/n) ')

@@ -1,3 +1,7 @@
+"""The game module.
+
+Contains all the logic for the game object."""
+
 from random import random
 from math import ceil
 
