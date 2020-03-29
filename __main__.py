@@ -8,6 +8,7 @@ from game import Game
 
 def main():
     """Run the guess-my-number game."""
+
     game = Game()
     guesses = 0
 
@@ -49,12 +50,13 @@ def main():
 
             # Ask the user if they would like to play again
             play_again = None
-            while play_again not in ('y', 'n'):
+            while not play_again:
                 play_again = input('Would you like to play again? (y/n) ')
-                print("Sorry, didn't catch that.\n")
+                if play_again not in ('y', 'n'):
+                    play_again = None
             if play_again == 'y':
                 game.game_over = True
-                guesses = 0 
+                guesses = 0
             else:
                 break
 
