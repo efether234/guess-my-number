@@ -30,6 +30,6 @@ class Game:
         if guess > self.secret_number:
             return 1
         if guess < self.secret_number:
-            return -1   
+            return -1
         # If guess is not too big or too small, it must be correct
         return 0
