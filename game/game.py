@@ -1,4 +1,4 @@
-from random import random
+from random import randint
 from math import ceil
 
 class Game:
@@ -40,8 +40,10 @@ class Game:
 
     def generate_secret_number(self):
         """Sets self.secret_number to a random inter between 1 and self.upper_bound inclusive."""
-
-        self.secret_number = ceil(random() * self.upper_bound)
+        if self.upper_bound:
+            self.secret_number = randint(1, self.upper_bound)
+        else:
+            self.secret_number = randint(1, 10)
 
     def check(self, guess):
         """Check to see if guess is correct.
