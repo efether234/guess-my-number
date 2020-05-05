@@ -1,10 +1,12 @@
 import unittest
-from game import Game
+from guessmynumber import guessmynumber
+
 
 class GameTestCase(unittest.TestCase):
     """Test suite for Game class"""
+
     def setUp(self):
-        self.game = Game()
+        self.game = guessmynumber.Game()
 
     def test_set_upper_bound(self):
         """Tests for set_upper_bound(difficulty)"""
@@ -22,15 +24,6 @@ class GameTestCase(unittest.TestCase):
         self.game.set_upper_bound('insane')
         self.assertEqual(self.game.upper_bound, 1000, 'Should be 1000')
 
-    def test_generate_secret_number(self):
-        """Tests for generate_secret_number()"""
-        self.game.upper_bound = 20
-        self.game.generate_secret_number()
-        self.assertIsInstance(self.game.secret_number, int, 'Should be an integer')
-        self.assertGreater(self.game.secret_number, 0, 'Should be greater than zero.')
-        self.assertLess(self.game.secret_number, self.game.upper_bound + 1, \
-            'Should be less than ' + str(self.game.upper_bound))
-
     def test_check(self):
         """Tests for check(guess)"""
         self.game.secret_number = 10
@@ -38,6 +31,7 @@ class GameTestCase(unittest.TestCase):
         self.assertEqual(self.game.check(10), 0, 'Should return 0')
         self.assertEqual(self.game.check(15), 1, 'Should return 1')
         self.assertEqual(self.game.check(5), -1, 'Should return -1')
+
 
 if __name__ == '__main__':
     unittest.main()

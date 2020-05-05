@@ -1,33 +1,28 @@
-"""A number guessing game.
+from .guessmynumber import Game
 
-The computer generates a random, secret integer and the user tries to guess
-what the number is. The computer keeps track of the number of guesses from
-the user."""
-
-from game import Game
 
 def main():
-    """Run the guess-my-number game."""
-
     game = Game()
     guesses = 0
 
     while True:
         while game.game_over:
-            print("Please choose a difficulty level: Easy, Medium, Hard, or Insane")
+            print("Please choose a difficulty level: "
+                  "Easy, Medium, Hard, or Insane")
             try:
                 difficulty = input('Difficulty: ').lower()
                 game.set_upper_bound(difficulty)
             except ValueError:
                 print("Oops, that wasn't a valid response.\n")
                 continue
-            game.generate_secret_number()
+            # game.set_secret_number()
             game.game_over = False
 
-        # Ask the user for a guess. If they enter something other than an int,
-        # tell them and ask again.
+        # Ask the user for a guess. If they enter something other than
+        # an int, tell them and ask again.
         if guesses == 0:
-            print("I'm thinking of a number between 1 and " + str(game.upper_bound) + ". \n")
+            print("I'm thinking of a number between 1 and " +
+                  str(game.upper_bound) + ". \n")
         else:
             print('Number of guesses so far: ' + str(guesses))
         try:
@@ -37,8 +32,8 @@ def main():
             print('Oops, try entering a number. \n')
             continue
 
-        # Game.check() will return 1 if the guess is too high, -1 if the guess
-        # is too low, and 0 if the guess is correct.
+        # Game.check() will return 1 if the guess is too high, -1 if the
+        # guess is too low, and 0 if the guess is correct.
         if game.check(guess) == 1:
             print('That guess is too high. \n')
             continue
@@ -59,6 +54,7 @@ def main():
                 guesses = 0
             else:
                 break
+
 
 if __name__ == '__main__':
     main()
