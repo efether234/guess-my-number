@@ -1,10 +1,5 @@
 """
 A module that contains the logic for playing the game.
-
-Classes
--------
-    Game
-        A class that represents an instance of the number-guessing game.
 """
 import random
 
@@ -16,11 +11,11 @@ class Game:
     Attributes
     ----------
     game_over : bool
-        whether the game has ended
+        Whether the game has ended.
     upper_bound : int
-        the upper limit of the secret number
+        The upper limit of the secret number,
     secret_number : int
-        the number the user is trying to guess
+        The number the user is trying to guess,
 
     Methods
     -------
@@ -31,36 +26,28 @@ class Game:
 
     """
 
-    def __init__(self):
-        self.game_over = True
-        self.upper_bound = None
-        self.secret_number = None
+    def __init__(self, difficulty):
+        """
+        Parameters
+        ----------
+        difficulty : str
+            User selected difficulty.
+        """
+
+        self.game_over = False
+        self.upper_bound = self._set_upper_bound(difficulty)
+        self.secret_number = self._set_secret_number(self.upper_bound)
 
     def __repr__(self):
         return "<Game - Upper bound: " + str(self.upper_bound) + \
             ", Secret number: " + str(self.secret_number) + ">"
 
-    def __set_secret_number(self):
-        if self.upper_bound:
-            self.secret_number = random.randint(1, self.upper_bound)
-        else:
-            self.secret_number = random.randint(1, 10)
+    def _set_secret_number(self, upper_bound):
+        # Return a secret number between 1 and the upper bound.
+        return random.randint(1, upper_bound)
 
-    def set_upper_bound(self, difficulty):
-        """
-        Set the game's upper bound based on a user selected difficulty.
-
-        Parameters
-        ----------
-        difficulty : str
-            The user selected difficulty for the game.
-
-        Raises
-        ------
-        ValueError
-            If user entered difficulty is not in list of expected
-            values.
-        """
+    def _set_upper_bound(self, difficulty):
+        # Return an upper bound based on the difficulty selected by user.
 
         # Check that user entered valid request.
         if difficulty not in ('easy', 'medium', 'hard', 'insane'):
@@ -69,16 +56,13 @@ class Game:
 
         # Set upper bound based on what user entered.
         if difficulty == 'easy':
-            self.upper_bound = 10
+            return 10
         elif difficulty == 'medium':
-            self.upper_bound = 20
+            return 20
         elif difficulty == 'hard':
-            self.upper_bound = 100
+            return 100
         else:
-            self.upper_bound = 1000
-
-        # Set the game's secret number
-        self.__set_secret_number()
+            return 1000
 
     def check(self, guess):
         """
@@ -86,13 +70,13 @@ class Game:
 
         Parameters
         ----------
-            guess : int
-                The user's guess.
+        guess : int
+            The user's guess.
         Returns
         -------
-            int
-                1 if the user's guess is too high, -1 if the user's
-                guess is too low, 0 if the user's guess is correct.
+        int
+            1 if the user's guess is too high, -1 if the user's
+            guess is too low, 0 if the user's guess is correct.
         """
 
         assert isinstance(guess, int), "Input should be of type Int"
