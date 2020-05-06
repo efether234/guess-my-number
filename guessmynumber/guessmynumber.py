@@ -8,32 +8,22 @@ class Game:
     """
     A class that represents an instance of the number-guessing game.
 
-    Attributes
-    ----------
-    game_over : bool
-        Whether the game has ended.
-    upper_bound : int
-        The upper limit of the secret number,
-    secret_number : int
-        The number the user is trying to guess,
+    Args:
+        difficulty (str): User selected difficulty.
 
-    Methods
-    -------
-    set_upper_bound(difficulty)
-        Set the game's upper bound based on a user selected difficulty.
-    check(guess)
-        Check to see if user's guess is correct
+    Attributes:
+        game_over (bool): Whether the game has ended.
+        upper_bound (int): The upper limit of the secret number.
+        secret_number (int): The number the user is trying to guess.
+
+    Methods:
+        set_upper_bound(difficulty): Set the game's upper bound based
+        on a user selected difficulty.
+        check(guess): Check to see if user's guess is correct
 
     """
 
     def __init__(self, difficulty):
-        """
-        Parameters
-        ----------
-        difficulty : str
-            User selected difficulty.
-        """
-
         self.game_over = False
         self.upper_bound = self._set_upper_bound(difficulty)
         self.secret_number = self._set_secret_number(self.upper_bound)
@@ -68,15 +58,11 @@ class Game:
         """
         Check to see if user's guess is correct.
 
-        Parameters
-        ----------
-        guess : int
-            The user's guess.
-        Returns
-        -------
-        int
-            1 if the user's guess is too high, -1 if the user's
-            guess is too low, 0 if the user's guess is correct.
+        Parameters:
+            guess (int): The user's guess.
+        Returns:
+            int: 1 if the user's guess is too high, -1 if the user's
+                 guess is too low, 0 if the user's guess is correct.
         """
 
         assert isinstance(guess, int), "Input should be of type Int"
