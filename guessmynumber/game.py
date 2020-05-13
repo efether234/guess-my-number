@@ -15,7 +15,6 @@ class Game:
     """
 
     def __init__(self, difficulty):
-        self.game_over = False
         self.upper_bound = self._set_upper_bound(difficulty)
         self.secret_number = self._set_secret_number(self.upper_bound)
 
